@@ -24,7 +24,13 @@ namespace EmailScheduling.Controllers
 
         [HttpGet]
         public List<Todo> All() {
-            return this._service.All(); ;
+            return this._service.All();
+        }
+
+        [HttpGet("{id}")]
+        public Todo Find(int id)
+        {
+            return this._service.Find(id); ;
         }
 
         [HttpDelete]

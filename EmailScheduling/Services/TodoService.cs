@@ -31,6 +31,11 @@ namespace EmailScheduling.Services
             return this._repository.All();
         }
 
+        public Todo Find(int id)
+        {
+            return this._repository.Find(id);
+        }
+
         public Todo Remove(int id)
         {
             return this._repository.Remove(id);
