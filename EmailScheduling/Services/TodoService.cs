@@ -3,42 +3,24 @@
 using EmailScheduling.Exceptions;
 using EmailScheduling.Models;
 using EmailScheduling.Repositories;
+using FluentValidation;
 using FluentValidation.Results;
 
 namespace EmailScheduling.Services
 {
-    public class TodoService
+    public class TodoService: BaseService<Todo>
     {
-        private TodoRepository _repository;
+        public TodoService(TodoRepository repository): base(repository) { }
 
-        public TodoService(TodoRepository repository)
+        protected override AbstractValidator<Todo> GetAddValidator()
         {
-            this._repository = repository;
+            return new TodoValidator();
         }
 
-        public Todo Add(Todo todo)
+        protected override void BeforeAdd(Todo entity)
         {
-            ValidationResult validationResult = new TodoValidator().Validate(todo);
-
-            if (!validationResult.IsValid)
-                throw new ValidationException(validationResult.Errors);
-
-            return this._repository.Add(todo);
-        }
-
-        public List<Todo> All()
-        {
-            return this._repository.All();
-        }
-
-        public Todo Find(int id)
-        {
-            return this._repository.Find(id);
-        }
-
-        public Todo Remove(int id)
-        {
-            return this._repository.Remove(id);
+            base.BeforeAdd(entity);
+            entity.Description = entity.Description.ToUpper();
         }
 
     }
