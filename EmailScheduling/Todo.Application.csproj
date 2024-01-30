@@ -23,4 +23,9 @@
     <Folder Include="Interfaces\Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmailScheduling.Email\Todo.Email.csproj" />
+    <ProjectReference Include="..\Todo.Data\Todo.Data.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,7 +1,7 @@
-﻿using EmailScheduling.Exceptions;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Todo.Application.Exceptions;
 
-namespace EmailScheduling.MIddlewares
+namespace Todo.Application.MIddlewares
 {
     public class ExceptionHandlingMiddleware
     {
@@ -34,11 +34,12 @@ namespace EmailScheduling.MIddlewares
             {
                 response.StatusCode = StatusCodes.Status404NotFound;
                 response.Message = "Entity not found.";
-            } else if (exception is ValidationException)
+            }
+            else if (exception is ValidationException)
             {
                 response.StatusCode = StatusCodes.Status400BadRequest;
                 response.Message = "One or more validation errors occurred.";
-                response.Errors = ((ValidationException) exception).errors;
+                response.Errors = ((ValidationException)exception).errors;
             }
 
             context.Response.StatusCode = response.StatusCode;

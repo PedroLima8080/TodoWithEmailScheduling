@@ -1,11 +1,9 @@
-﻿
-
-using EmailScheduling.Repositories;
-using FluentValidation;
+﻿using FluentValidation;
 using FluentValidation.Results;
-using CustomValidationException = EmailScheduling.Exceptions.ValidationException;
+using Todo.Application.Repositories;
+using CustomValidationException = Todo.Application.Exceptions.ValidationException;
 
-namespace EmailScheduling.Services
+namespace Todo.Application.Services
 {
     public abstract class BaseService<T> where T : class
     {
@@ -24,14 +22,14 @@ namespace EmailScheduling.Services
 
         public BaseService(BaseRepository<T> repository)
         {
-            this._repository = repository;
+            _repository = repository;
         }
 
         public T Add(T entity)
         {
             AbstractValidator<T> validator = GetAddValidator();
 
-            if(validator != null)
+            if (validator != null)
             {
                 ValidationResult validationResult = validator.Validate(entity);
 
@@ -40,7 +38,7 @@ namespace EmailScheduling.Services
             }
 
             BeforeAdd(entity);
-            T createdEntity = this._repository.Add(entity);
+            T createdEntity = _repository.Add(entity);
             AfterAdd(entity);
 
             return createdEntity;
@@ -48,17 +46,17 @@ namespace EmailScheduling.Services
 
         public List<T> All()
         {
-            return this._repository.All();
+            return _repository.All();
         }
 
         public T Find(int id)
         {
-            return this._repository.Find(id);
+            return _repository.Find(id);
         }
 
         public T Remove(int id)
         {
-            return this._repository.Remove(id);
+            return _repository.Remove(id);
         }
     }
 }

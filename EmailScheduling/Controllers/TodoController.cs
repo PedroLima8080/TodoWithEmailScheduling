@@ -1,9 +1,8 @@
-﻿using EmailScheduling.Models;
-using EmailScheduling.Services;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Todo.Application.Services;
 
-namespace EmailScheduling.Controllers
+namespace Todo.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,26 +16,27 @@ namespace EmailScheduling.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Todo todo)
+        public IActionResult Post(Todo.Data.Models.Todo todo)
         {
-            return Ok(this._service.Add(todo));
+            return Ok(_service.Add(todo));
         }
 
         [HttpGet]
-        public List<Todo> All() {
-            return this._service.All();
+        public List<Todo.Data.Models.Todo> All()
+        {
+            return _service.All();
         }
 
         [HttpGet("{id}")]
-        public Todo Find(int id)
+        public Todo.Data.Models.Todo Find(int id)
         {
-            return this._service.Find(id); ;
+            return _service.Find(id); ;
         }
 
         [HttpDelete]
-        public Todo Remove(int id)
+        public Todo.Data.Models.Todo Remove(int id)
         {
-            return this._service.Remove(id); ;
+            return _service.Remove(id); ;
         }
     }
 }

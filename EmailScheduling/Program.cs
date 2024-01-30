@@ -1,7 +1,7 @@
-using EmailScheduling.Context;
-using EmailScheduling.MIddlewares;
-using EmailScheduling.Repositories;
-using EmailScheduling.Services;
+using Todo.Application.Context;
+using Todo.Application.MIddlewares;
+using Todo.Application.Repositories;
+using Todo.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

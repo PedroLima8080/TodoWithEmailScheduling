@@ -1,12 +1,10 @@
-﻿using EmailScheduling.Context;
-using EmailScheduling.Exceptions;
-using EmailScheduling.Models;
+﻿using Todo.Application.Context;
 
-namespace EmailScheduling.Repositories
+namespace Todo.Application.Repositories
 {
-    public class TodoRepository: BaseRepository<Todo>
+    public class TodoRepository : BaseRepository<Todo.Data.Models.Todo>
     {
-        public TodoRepository(DataContext _context): base(_context) { }
+        public TodoRepository(DataContext _context) : base(_context) { }
 
     }
 }

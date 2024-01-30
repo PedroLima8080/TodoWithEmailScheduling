@@ -1,8 +1,7 @@
-﻿using EmailScheduling.Context;
-using EmailScheduling.Exceptions;
-using EmailScheduling.Models;
+﻿using Todo.Application.Context;
+using Todo.Application.Exceptions;
 
-namespace EmailScheduling.Repositories
+namespace Todo.Application.Repositories
 {
     public class BaseRepository<T> where T : class
     {
@@ -15,26 +14,26 @@ namespace EmailScheduling.Repositories
 
         public T Add(T entity)
         {
-            T newEntity = this._context.Set<T>().Add(entity).Entity;
-            this._context.SaveChanges();
+            T newEntity = _context.Set<T>().Add(entity).Entity;
+            _context.SaveChanges();
             return newEntity;
         }
 
         public List<T> All()
         {
-            return this._context.Set<T>().ToList();
+            return _context.Set<T>().ToList();
         }
 
         public T Remove(int id)
         {
-            T entity = this.Find(id);
+            T entity = Find(id);
 
             return entity;
         }
 
         public T Find(int id)
         {
-            T entity = this._context.Set<T>().Find(id);
+            T entity = _context.Set<T>().Find(id);
 
             if (entity == null)
                 throw new EntityNotFoundException();

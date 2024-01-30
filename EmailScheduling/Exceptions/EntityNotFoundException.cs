@@ -1,6 +1,6 @@
-﻿namespace EmailScheduling.Exceptions
+﻿namespace Todo.Application.Exceptions
 {
-    public class EntityNotFoundException: Exception
+    public class EntityNotFoundException : Exception
     {
     }
 }

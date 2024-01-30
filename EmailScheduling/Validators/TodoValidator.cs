@@ -1,7 +1,6 @@
-﻿using EmailScheduling.Models;
-using FluentValidation;
+﻿using FluentValidation;
 
-public class TodoValidator : AbstractValidator<Todo>
+public class TodoValidator : AbstractValidator<Todo.Data.Models.Todo>
 {
     public TodoValidator()
     {

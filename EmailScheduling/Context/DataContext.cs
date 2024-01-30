@@ -1,8 +1,6 @@
-﻿
-using EmailScheduling.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace EmailScheduling.Context
+namespace Todo.Application.Context
 {
     public class DataContext : DbContext
     {
@@ -19,8 +17,8 @@ namespace EmailScheduling.Context
             options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
 
-        
 
-        public DbSet<Todo> Todo { get; set; }
+
+        public DbSet<Todo.Data.Models.Todo> Todo { get; set; }
     }
 }
