@@ -9,3 +9,6 @@
         public DateTime UpdatedDate { get; set; } = DateTime.Now;
     }
 }
+
+
+
