@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /.docker/development/mysql
 /EmailScheduling/.docker/development/mysql
+/Todo/.docker/development/mysql
