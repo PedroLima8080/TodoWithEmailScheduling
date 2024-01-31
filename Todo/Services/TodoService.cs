@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Todo.Application.Repositories;
+using Todo.Data.DTOs;
 
 namespace Todo.Application.Services
 {
@@ -12,11 +13,15 @@ namespace Todo.Application.Services
             return new TodoValidator();
         }
 
-        protected override void BeforeAdd(Todo.Data.Models.Todo entity)
+        public Todo.Data.Models.Todo Update(int id, TodoDTO newEntityData)
         {
-            base.BeforeAdd(entity);
-            entity.Description = entity.Description.ToUpper();
-        }
+            Todo.Data.Models.Todo entity = Find(id);
 
+            if(newEntityData.Title != null) entity.Title = newEntityData.Title;
+            if (newEntityData.Description != null) entity.Description = newEntityData.Description;
+
+            return _repository.Update(entity);
+
+        }
     }
 }

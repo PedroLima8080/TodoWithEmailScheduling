@@ -1,5 +1,4 @@
 ﻿using Todo.Application.Context;
-using Todo.Application.Exceptions;
 
 namespace Todo.Application.Repositories
 {
@@ -19,6 +18,12 @@ namespace Todo.Application.Repositories
             return newEntity;
         }
 
+        public T Update(T entity)
+        {
+            T updatedEntity = _context.Set<T>().Update(entity).Entity;
+            _context.SaveChanges();
+            return updatedEntity;
+        }
         public List<T> All()
         {
             return _context.Set<T>().ToList();
@@ -26,19 +31,15 @@ namespace Todo.Application.Repositories
 
         public T Remove(int id)
         {
-            T entity = Find(id);
-
-            return entity;
+            T removedEntity = Find(id);
+            _context.Set<T>().Remove(removedEntity);
+            _context.SaveChanges();
+            return removedEntity;
         }
 
         public T Find(int id)
         {
-            T entity = _context.Set<T>().Find(id);
-
-            if (entity == null)
-                throw new EntityNotFoundException();
-
-            return entity;
+            return _context.Set<T>().Find(id);
         }
     }
 }

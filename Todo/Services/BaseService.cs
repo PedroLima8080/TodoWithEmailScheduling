@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Todo.Application.Exceptions;
 using Todo.Application.Repositories;
 using CustomValidationException = Todo.Application.Exceptions.ValidationException;
 
@@ -7,7 +8,7 @@ namespace Todo.Application.Services
 {
     public abstract class BaseService<T> where T : class
     {
-        private BaseRepository<T> _repository;
+        protected BaseRepository<T> _repository;
 
         protected virtual AbstractValidator<T> GetAddValidator()
         {
@@ -51,11 +52,12 @@ namespace Todo.Application.Services
 
         public T Find(int id)
         {
-            return _repository.Find(id);
+            return _repository.Find(id) ?? throw new EntityNotFoundException();
         }
 
         public T Remove(int id)
         {
+            T entity = Find(id);
             return _repository.Remove(id);
         }
     }
