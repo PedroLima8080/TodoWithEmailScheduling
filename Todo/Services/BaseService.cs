@@ -1,14 +1,23 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using RabbitMQ.Client.Events;
+using System.Text.Json;
+using System.Text;
+using System.Threading.Channels;
 using Todo.Application.Exceptions;
 using Todo.Application.Repositories;
+using Todo.Messaging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using CustomValidationException = Todo.Application.Exceptions.ValidationException;
+using RabbitMQ.Client;
 
 namespace Todo.Application.Services
 {
     public abstract class BaseService<T> where T : class
     {
         protected BaseRepository<T> _repository;
+        protected MessageService _messageService;
+
 
         protected virtual AbstractValidator<T> GetAddValidator()
         {
@@ -21,9 +30,10 @@ namespace Todo.Application.Services
         protected virtual void AfterAdd(T createdEntity)
         { }
 
-        public BaseService(BaseRepository<T> repository)
+        public BaseService(BaseRepository<T> repository, MessageService messageService)
         {
             _repository = repository;
+            _messageService = messageService;
         }
 
         public T Add(T entity)
@@ -41,6 +51,9 @@ namespace Todo.Application.Services
             BeforeAdd(entity);
             T createdEntity = _repository.Add(entity);
             AfterAdd(entity);
+
+            byte[] body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize("teste"));
+            _messageService.emailChannel.BasicPublish(exchange: "", routingKey: "myQueue", basicProperties: null, body: body);
 
             return createdEntity;
         }

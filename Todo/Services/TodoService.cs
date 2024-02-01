@@ -1,12 +1,13 @@
 ﻿using FluentValidation;
 using Todo.Application.Repositories;
 using Todo.Data.DTOs;
+using Todo.Messaging;
 
 namespace Todo.Application.Services
 {
     public class TodoService : BaseService<Todo.Data.Models.Todo>
     {
-        public TodoService(TodoRepository repository) : base(repository) { }
+        public TodoService(TodoRepository repository, MessageService messageService) : base(repository, messageService) { }
 
         protected override AbstractValidator<Todo.Data.Models.Todo> GetAddValidator()
         {

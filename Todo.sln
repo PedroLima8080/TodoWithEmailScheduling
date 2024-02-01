@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Email", "Todo.Email\To
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Todo.Application", "Todo\Todo.Application.csproj", "{46ACC882-E185-4CED-BA34-5372316CE161}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todo.Messaging", "Todo.Messaging\Todo.Messaging.csproj", "{12EDAF47-62B0-4E50-AF13-90BEFBF8D812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{46ACC882-E185-4CED-BA34-5372316CE161}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46ACC882-E185-4CED-BA34-5372316CE161}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46ACC882-E185-4CED-BA34-5372316CE161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12EDAF47-62B0-4E50-AF13-90BEFBF8D812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12EDAF47-62B0-4E50-AF13-90BEFBF8D812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12EDAF47-62B0-4E50-AF13-90BEFBF8D812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12EDAF47-62B0-4E50-AF13-90BEFBF8D812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
