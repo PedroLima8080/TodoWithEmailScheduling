@@ -16,15 +16,15 @@ namespace Todo.Application.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Todo.Data.DTOs.TodoDTO todoDTO)
+        public Todo.Data.Models.Todo Add(Todo.Data.DTOs.TodoDTO todoDTO)
         {
-            return Ok(_service.Add(new Data.Models.Todo(todoDTO)));
+            return _service.Add(new Data.Models.Todo(todoDTO));
         }
 
         [HttpGet]
-        public List<Todo.Data.Models.Todo> All()
+        public List<Todo.Data.Models.Todo> getAll()
         {
-            return _service.All();
+            return _service.getAll();
         }
 
         [HttpGet("{id}")]
@@ -34,9 +34,9 @@ namespace Todo.Application.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Todo.Data.DTOs.TodoDTO todoDTO)
+        public Todo.Data.Models.Todo Update(int id, Todo.Data.DTOs.TodoDTO todoDTO)
         {
-            return Ok(_service.Update(id, todoDTO));
+            return _service.Update(id, todoDTO);
         }
 
         [HttpDelete]

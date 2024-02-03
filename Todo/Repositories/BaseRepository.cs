@@ -4,7 +4,7 @@ namespace Todo.Application.Repositories
 {
     public class BaseRepository<T> where T : class
     {
-        private DataContext _context;
+        protected DataContext _context;
 
         public BaseRepository(DataContext _context)
         {
@@ -24,7 +24,7 @@ namespace Todo.Application.Repositories
             _context.SaveChanges();
             return updatedEntity;
         }
-        public List<T> All()
+        public List<T> getAll()
         {
             return _context.Set<T>().ToList();
         }

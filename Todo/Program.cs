@@ -7,14 +7,15 @@ using Todo.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddScoped<DataContext>();
 builder.Services.AddScoped<MessageService>();
+builder.Services.AddScoped<StatusRepository>();
+builder.Services.AddScoped<StatusService>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<TodoRepository>();
 builder.Services.AddScoped<TodoService>();
-// Add Services and repositories
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -4,9 +4,8 @@ using System.Text;
 using Todo.Messaging;
 
 var messageService = new MessageService();
-new EventingBasicConsumer(messageService.emailChannel);
-
 var consumer = new EventingBasicConsumer(messageService.emailChannel);
+
 consumer.Received += (model, ea) =>
 {
     Task.Run(() =>
